@@ -10,16 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "hamburger-react": "^2.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.22.3",
+    "react-router-hash-link": "^2.4.3",
     "react-toastify": "^10.0.5",
     "styled-components": "^6.1.8"
   },
   "devDependencies": {
+    "@types/node": "^20.12.4",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
+    "@types/react-router-hash-link": "^2.4.9",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-react": "^4.2.1",

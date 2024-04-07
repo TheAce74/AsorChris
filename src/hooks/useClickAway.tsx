@@ -1,12 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 function useClickAway(
-  ref: React.MutableRefObject<HTMLElement>,
-  callback: () => void
+  ref: React.MutableRefObject<HTMLElement | null>,
+  callback: () => void,
+  excludeClasses?: string[]
 ) {
+  const memoizedExcludeClasses = useMemo(
+    () => excludeClasses,
+    [excludeClasses]
+  );
+
   useEffect(() => {
     const handleClickAway = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
+      const target = e.target as HTMLElement;
+      if (
+        ref.current &&
+        !ref.current.contains(target) &&
+        !memoizedExcludeClasses?.includes(target.className) &&
+        !memoizedExcludeClasses?.some((item) => target.closest(`.${item}`))
+      ) {
         callback();
       }
     };
@@ -15,7 +27,7 @@ function useClickAway(
     return () => {
       document.removeEventListener("mousedown", handleClickAway);
     };
-  }, [ref, callback]);
+  }, [ref, callback, memoizedExcludeClasses]);
 }
 
 export { useClickAway };

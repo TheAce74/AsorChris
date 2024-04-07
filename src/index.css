@@ -10,6 +10,8 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   font-family: var(--font-body);
+  background-color: var(--clr-neutral-100);
+  color: var(--clr-neutral-900);
 }
 
 picture,
@@ -66,6 +68,39 @@ ol[role="list"] {
   --clr-neutral-100: #ffffff;
   --clr-neutral-400: #686868;
   --clr-neutral-900: #282828;
+
+  scroll-behavior: smooth;
+}
+
+@media screen and (max-width: 40em) {
+  :root {
+    font-size: 0.85rem;
+  }
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.rotate {
+  rotate: -90deg;
+  margin-top: 3px !important;
+}
+
+.body-wrapper {
+  max-width: 120em;
+  margin-inline: auto;
 }
 
 /* error.tsx */

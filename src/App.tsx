@@ -14,11 +14,11 @@ function App() {
   const router = createBrowserRouter([
     {
       element: (
-        <>
+        <div className="body-wrapper">
           <Outlet />
           <ScrollToTop />
           <ToastContainer />
-        </>
+        </div>
       ),
       errorElement: <Error />,
       children: [
