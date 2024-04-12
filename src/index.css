@@ -98,9 +98,40 @@ ol[role="list"] {
   margin-top: 3px !important;
 }
 
+.grid-flexible {
+  --min-col-width: 350px;
+  --gap: 2em;
+
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(var(--min-col-width), 100%), 1fr)
+  );
+}
+
 .body-wrapper {
   max-width: 120em;
   margin-inline: auto;
+}
+
+/* scrollbar stuff */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--clr-primary-200);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--clr-accent-400);
+  border-radius: 100vmax;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
 }
 
 /* error.tsx */

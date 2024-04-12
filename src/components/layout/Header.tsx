@@ -61,7 +61,7 @@ export default function Header() {
               <li>
                 <HashLink
                   className="link"
-                  to="/#services-flier"
+                  to="/#services-flyer"
                   onClick={handleCloseMenu}
                 >
                   Flyer Design
@@ -117,10 +117,12 @@ export default function Header() {
           </li>
         </ul>
       </nav>
-      <Button>
-        <span>Work with me</span>
-        <FaAngleRight />
-      </Button>
+      <a href="https://wa.me/2347085936545" className="link" target="_blank">
+        <Button>
+          <span>Work with me</span>
+          <FaAngleRight />
+        </Button>
+      </a>
     </StyledHeader>
   );
 }
@@ -218,25 +220,25 @@ const StyledHeader = styled.header`
   }
 
   ${maxMedia(
-    1030,
+    1035,
     `
     padding-inline-end: 0;
        
-    button {
+    [target="_blank"] {
       display: none;
     }
   `
   )}
 
   ${maxMedia(
-    773,
+    780,
     `
     padding-inline-start: 1em;
   `
   )}
 
   ${maxMedia(
-    725,
+    732,
     `
     justify-content: space-between;
     padding: .5em 1em;
