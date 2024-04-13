@@ -133,8 +133,9 @@ const StyledHeader = styled.header`
   background-color: var(--clr-neutral-100);
   box-shadow: 0px 0px 2px var(--clr-neutral-400);
   position: sticky;
-  z-index: 1;
+  z-index: 4;
   top: 0;
+  background-color: var(--clr-neutral-100);
 
   .hamburger-react {
     display: none;
@@ -251,7 +252,7 @@ const StyledHeader = styled.header`
 
     .hamburger-react {
       display: block;
-      z-index: 3;
+      z-index: 6;
       transition: all 0.4s cubic-bezier(0, 0, 0, 1) 0s, color 0s !important;
     }
 
@@ -262,7 +263,7 @@ const StyledHeader = styled.header`
       [aria-label="primary navigation"] {
         position: fixed;
         inset: 0;
-        z-index: 2;
+        z-index: 5;
         background-color: var(--clr-primary-400);
         color: var(--clr-neutral-100);
         flex-direction: column;
@@ -292,7 +293,7 @@ const StyledHeader = styled.header`
       }
 
       .services {
-        z-index: 3;
+        z-index: 6;
 
         ul {
             border-radius: 0.3em;

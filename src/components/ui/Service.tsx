@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Button from "./Button";
-import { HomeService } from "../../utils/types";
+import { ServiceType } from "../../utils/types";
 import { maxMedia } from "../../utils/mediaQueries";
 
-type ServiceProps = HomeService;
+type ServiceProps = ServiceType;
 
 export default function Service({
   id,

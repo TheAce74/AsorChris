@@ -1,10 +1,10 @@
-import { HomeService } from "../utils/types";
+import { ServiceType } from "../utils/types";
 import services1 from "../assets/services1.svg";
 import services2 from "../assets/services2.svg";
 import services3 from "../assets/services3.svg";
 import services4 from "../assets/services4.svg";
 
-export const services: HomeService[] = [
+export const services: ServiceType[] = [
   {
     id: "services-ui",
     image: services1,
@@ -43,6 +43,6 @@ export const services: HomeService[] = [
     title: "Content Writing",
     text: "Engage and convert your audience with compelling content. Our content writing services specialize in crafting clear, persuasive, and SEO-friendly content that speaks directly to your audience's needs and interests. From website copy to blog posts, let's tell your story in a way that resonates and drives action.",
     linkText: "See Contents",
-    linkPath: "/projects?filter=content",
+    linkPath: "/projects?filter=all",
   },
 ];
