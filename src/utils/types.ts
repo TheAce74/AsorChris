@@ -14,3 +14,8 @@ export type ProjectWithContentType = {
   linkText: string;
   linkPath: string;
 };
+
+export type Testimony = {
+  name: string;
+  text: string;
+};

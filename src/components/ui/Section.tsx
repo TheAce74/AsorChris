@@ -6,11 +6,17 @@ type SectionProps = {
   id: string;
   heading: string;
   children: ReactNode;
+  className?: string;
 };
 
-export default function Section({ id, heading, children }: SectionProps) {
+export default function Section({
+  id,
+  heading,
+  children,
+  className,
+}: SectionProps) {
   return (
-    <StyledSection id={id}>
+    <StyledSection id={id} className={className}>
       <h2>{heading}</h2>
       {children}
     </StyledSection>

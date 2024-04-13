@@ -110,6 +110,14 @@ ol[role="list"] {
   );
 }
 
+.grab {
+  cursor: grab;
+}
+
+.grab:active {
+  cursor: grabbing;
+}
+
 .body-wrapper {
   max-width: 120em;
   margin-inline: auto;

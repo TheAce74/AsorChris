@@ -169,14 +169,6 @@ const StyledSubSection = styled.div`
     border-radius: 0.7em;
   }
 
-  .grab {
-    cursor: grab;
-
-    &:active {
-      cursor: grabbing;
-    }
-  }
-
   .grid-flexible-images {
     --min-col-width: 300px;
   }
