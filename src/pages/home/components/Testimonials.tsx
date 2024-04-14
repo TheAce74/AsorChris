@@ -56,14 +56,14 @@ export default function Testimonials() {
 }
 
 const StyledTestimonials = styled.div`
+  .min-h-max {
+    min-height: max-content;
+  }
+
   ${maxMedia(
     "sm",
     `
-        margin-top: 1.5em;
-
-        .min-h-max {
-            min-height: max-content;
-        }
+        margin-top: 1.5em;   
     `
   )}
 `;

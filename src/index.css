@@ -70,6 +70,7 @@ ol[role="list"] {
   --clr-neutral-900: #282828;
 
   scroll-behavior: smooth;
+  scroll-padding-top: 6em;
 }
 
 @media screen and (max-width: 40em) {

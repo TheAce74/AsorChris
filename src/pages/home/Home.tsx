@@ -1,4 +1,5 @@
 import About from "./components/About";
+import Contact from "./components/Contact";
 import Creativity from "./components/Creativity";
 import FeaturedProjects from "./components/FeaturedProjects";
 import Hero from "./components/Hero";
@@ -14,6 +15,7 @@ export default function Home() {
       <Services />
       <FeaturedProjects />
       <Testimonials />
+      <Contact />
     </main>
   );
 }

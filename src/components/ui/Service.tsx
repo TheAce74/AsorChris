@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Button from "./Button";
 import { ServiceType } from "../../utils/types";
@@ -14,8 +14,11 @@ export default function Service({
   linkText,
   linkPath,
 }: ServiceProps) {
+  const location = useLocation();
+  const target = location.hash.includes(id);
+
   return (
-    <StyledService id={id} className="flex">
+    <StyledService id={id} className="flex" data-target={target}>
       <div>
         <img src={image} alt="" />
         <h3>{title}</h3>
@@ -36,7 +39,7 @@ const StyledService = styled.div`
   align-items: start;
   gap: 0;
 
-  &:target {
+  &[data-target="true"] {
     outline: 2px solid var(--clr-primary-400);
   }
 
