@@ -9,6 +9,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import Projects from "./pages/projects/Projects";
 import Project from "./pages/project/Project";
+import Terms from "./pages/terms/Terms";
+import Privacy from "./pages/privacy/Privacy";
+import Refund from "./pages/refund/Refund";
 
 function App() {
   const router = createBrowserRouter([
@@ -43,6 +46,18 @@ function App() {
             {
               path: "/projects/:slug",
               element: <Project />,
+            },
+            {
+              path: "/terms",
+              element: <Terms />,
+            },
+            {
+              path: "/privacy",
+              element: <Privacy />,
+            },
+            {
+              path: "/refund",
+              element: <Refund />,
             },
           ],
         },

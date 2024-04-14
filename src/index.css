@@ -69,13 +69,18 @@ ol[role="list"] {
   --clr-neutral-400: #686868;
   --clr-neutral-900: #282828;
 
-  scroll-behavior: smooth;
   scroll-padding-top: 6em;
 }
 
 @media screen and (max-width: 40em) {
   :root {
     font-size: 0.85rem;
+  }
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: smooth;
   }
 }
 
