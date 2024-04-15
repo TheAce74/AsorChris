@@ -12,16 +12,21 @@ import Project from "./pages/project/Project";
 import Terms from "./pages/terms/Terms";
 import Privacy from "./pages/privacy/Privacy";
 import Refund from "./pages/refund/Refund";
+import { MantineProvider } from "@mantine/core";
+import "@mantine/core/styles.css";
+import { theme } from "./services/mantine/theme";
 
 function App() {
   const router = createBrowserRouter([
     {
       element: (
-        <div className="body-wrapper">
-          <Outlet />
-          <ScrollToTop />
-          <ToastContainer />
-        </div>
+        <MantineProvider theme={theme}>
+          <div className="body-wrapper">
+            <Outlet />
+            <ScrollToTop />
+            <ToastContainer />
+          </div>
+        </MantineProvider>
       ),
       errorElement: <Error />,
       children: [

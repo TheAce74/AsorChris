@@ -5,14 +5,12 @@ import { v4 as uuidv4 } from "uuid";
 
 type Project = {
   type: string;
-  viewMore: string;
   data: string[] | ProjectWithContentType[];
 }[];
 
-export const featuredProjects: Project = [
+export const allProjects: Project = [
   {
     type: "UI/UX",
-    viewMore: "/projects?filter=ui",
     data: [
       {
         image: image1,
@@ -74,7 +72,6 @@ export const featuredProjects: Project = [
   },
   {
     type: "Brand Identity Design",
-    viewMore: "/projects?filter=brand",
     data: [
       {
         image: image1,
@@ -136,7 +133,6 @@ export const featuredProjects: Project = [
   },
   {
     type: "Logo Design",
-    viewMore: "/projects?filter=logo",
     data: [
       image2,
       image2,
@@ -152,7 +148,6 @@ export const featuredProjects: Project = [
   },
   {
     type: "Flyer Designs",
-    viewMore: "/projects?filter=flyer",
     data: [
       image2,
       image2,
