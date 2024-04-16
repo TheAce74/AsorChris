@@ -1,7 +1,11 @@
+import Interface from "./components/Interface";
+import Intro from "./components/Intro";
+
 export default function Project() {
   return (
     <main>
-      <h1>Project</h1>
+      <Intro />
+      <Interface />
     </main>
   );
 }

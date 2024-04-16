@@ -15,8 +15,8 @@ const options = [
 ];
 
 export default function ProjectsList() {
-  const [filterParams, setFilterParams] = useSearchParams();
-  const computedValue = filterParams.get("filter") ?? "all";
+  const [searchParams, setSearchParams] = useSearchParams();
+  const computedValue = searchParams.get("filter") ?? "all";
 
   return (
     <StyledProjectsList>
@@ -28,7 +28,7 @@ export default function ProjectsList() {
           size="md"
           value={computedValue}
           onChange={(_value, option) =>
-            setFilterParams({ filter: option.value })
+            setSearchParams({ filter: option.value })
           }
           checkIconPosition="right"
           aria-label="category dropdown"
