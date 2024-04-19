@@ -1,4 +1,4 @@
-export const defaultSizes = {
+export const DEFAULT_SIZES = {
   xs: 450,
   sm: 704,
   md: 800,

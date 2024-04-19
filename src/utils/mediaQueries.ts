@@ -1,4 +1,4 @@
-import { defaultSizes } from "./constants";
+import { DEFAULT_SIZES } from "./constants";
 
 type SizeMediaQuery = {
   type: "min" | "max";
@@ -52,7 +52,7 @@ const minMedia = (
   if (typeof size === "number") {
     return media({ type: "min", content, size });
   } else {
-    return media({ type: "min", content, size: defaultSizes[size] });
+    return media({ type: "min", content, size: DEFAULT_SIZES[size] });
   }
 };
 
@@ -63,7 +63,7 @@ const maxMedia = (
   if (typeof size === "number") {
     return media({ type: "max", content, size });
   } else {
-    return media({ type: "max", content, size: defaultSizes[size] });
+    return media({ type: "max", content, size: DEFAULT_SIZES[size] });
   }
 };
 

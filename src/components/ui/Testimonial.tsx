@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { initials } from "../../utils/initials";
+import { getInitials } from "../../utils/functions";
 import { Testimony } from "../../utils/types";
 
 type TestimonialProps = Testimony;
@@ -9,7 +9,7 @@ export default function Testimonial({ name, text }: TestimonialProps) {
     <StyledTestimonial className="grab">
       <div className="flex">
         <span aria-hidden="true" className="flex">
-          <span>{initials(name)}</span>
+          <span>{getInitials(name)}</span>
         </span>
         <h3>{name}</h3>
       </div>
