@@ -15,11 +15,11 @@ import Refund from "./pages/refund/Refund";
 import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import { theme } from "./services/mantine/theme";
-import DashboardSidebar from "./pages/dashboard/components/layout/DashboardSidebar";
-import DashboardHeader from "./pages/dashboard/components/layout/DashboardHeader";
 import DashboardHome from "./pages/dashboard/home/DashboardHome";
 import DashboardProjects from "./pages/dashboard/projects/DashboardProjects";
 import DashboardMessages from "./pages/dashboard/messages/DashboardMessages";
+import Guard from "./pages/dashboard/components/layout/Guard";
+import DashboardWrapper from "./pages/dashboard/components/layout/DashboardWrapper";
 
 function App() {
   const router = createBrowserRouter([
@@ -78,13 +78,9 @@ function App() {
         {
           path: "/admin",
           element: (
-            <>
-              <DashboardSidebar />
-              <div>
-                <DashboardHeader />
-                <Outlet />
-              </div>
-            </>
+            <Guard>
+              <DashboardWrapper />
+            </Guard>
           ),
           children: [
             {

@@ -26,3 +26,5 @@ export type Testimony = {
 export type KeysOfType<T extends Record<string, unknown>> = keyof T;
 
 export type ContactInputs = InferType<typeof contactSchema>;
+
+export type DashboardHeaderText = "Dashboard" | "Projects" | "Messages";
