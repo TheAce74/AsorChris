@@ -159,16 +159,6 @@ const StyledSubSection = styled.div`
     }
   }
 
-  .stand-alone {
-    width: min(300px, 100%);
-    aspect-ratio: 1;
-    object-fit: cover;
-    object-position: center;
-    margin-inline: auto;
-    display: block;
-    border-radius: 0.7em;
-  }
-
   .grid-flexible-images {
     --min-col-width: 300px;
   }

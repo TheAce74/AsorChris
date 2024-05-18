@@ -67,6 +67,7 @@ ol[role="list"] {
   --clr-accent-200: #ecf9d0;
   --clr-accent-400: #a0e212;
   --clr-neutral-100: #ffffff;
+  --clr-neutral-200: #fdfdfd;
   --clr-neutral-400: #686868;
   --clr-neutral-900: #282828;
 
@@ -123,6 +124,16 @@ ol[role="list"] {
 
 .grab:active {
   cursor: grabbing;
+}
+
+.stand-alone {
+  width: min(300px, 100%);
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center;
+  margin-inline: auto;
+  display: block;
+  border-radius: 0.7em;
 }
 
 .body-wrapper {

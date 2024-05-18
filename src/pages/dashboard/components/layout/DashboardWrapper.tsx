@@ -38,7 +38,7 @@ const StyledDashboardWrapper = styled.div`
     > div {
       background-color: var(--clr-neutral-100);
       min-height: 80dvh;
-      padding: 1em;
+      padding: 2em;
       border-radius: 0.6em;
     }
   }
@@ -54,6 +54,7 @@ const StyledDashboardWrapper = styled.div`
 
       > div {
         border-radius: 0em;
+        padding: 1em;
       }
     }
     `

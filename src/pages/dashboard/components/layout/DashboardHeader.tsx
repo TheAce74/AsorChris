@@ -45,7 +45,7 @@ export default function DashboardHeader({
 const StyledDashboardHeader = styled.header`
   position: sticky;
   top: 0;
-  padding: 0.7em 3em;
+  padding: 0.7em 4em;
   box-shadow: 2px 0px 2px var(--clr-neutral-400);
   gap: 6em;
   background-color: var(--clr-neutral-100);

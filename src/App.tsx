@@ -20,6 +20,7 @@ import DashboardProjects from "./pages/dashboard/projects/DashboardProjects";
 import DashboardMessages from "./pages/dashboard/messages/DashboardMessages";
 import Guard from "./pages/dashboard/components/layout/Guard";
 import DashboardWrapper from "./pages/dashboard/components/layout/DashboardWrapper";
+import DashboardAddProjects from "./pages/dashboard/projects/DashboardAddProjects";
 
 function App() {
   const router = createBrowserRouter([
@@ -90,6 +91,10 @@ function App() {
             {
               path: "/admin/projects",
               element: <DashboardProjects />,
+            },
+            {
+              path: "/admin/projects/add",
+              element: <DashboardAddProjects />,
             },
             {
               path: "/admin/messages",
