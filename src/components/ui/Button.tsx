@@ -33,6 +33,10 @@ const Button = styled.button<{
     scale: 0.95;
   }
 
+  &:disabled {
+    opacity: 0.4;
+  }
+
   ${({ variant }) =>
     variant === "accent"
       ? css`

@@ -1,5 +1,5 @@
 import { InferType } from "yup";
-import { addProjectSchema, contactSchema } from "./schema";
+import { addProjectSchema, contactSchema, loginSchema } from "./schema";
 
 export type ServiceType = {
   id: string;
@@ -34,3 +34,11 @@ export type DashboardHeaderText =
   | "Add new project";
 
 export type AddProjectInputs = InferType<typeof addProjectSchema>;
+
+export type Admin = {
+  name: string;
+  email: string;
+  id: string;
+};
+
+export type LoginInputs = InferType<typeof loginSchema>;

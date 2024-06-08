@@ -7,6 +7,7 @@ import { RiLogoutCircleRLine } from "react-icons/ri";
 import { maxMedia, motionMedia } from "../../../../utils/mediaQueries";
 import { Dispatch, SetStateAction, useRef } from "react";
 import { useClickAway } from "../../../../hooks/useClickAway";
+import { useLogout } from "../../../../hooks/useLogout";
 
 type DashboardSidebarProps = {
   openMenu: boolean;
@@ -18,6 +19,7 @@ export default function DashboardSidebar({
   setOpenMenu,
 }: DashboardSidebarProps) {
   const clickAwayRef = useRef(null);
+  const { openLogoutModal, logoutModal } = useLogout();
 
   const handleCloseMenu = () => setOpenMenu(false);
 
@@ -63,11 +65,12 @@ export default function DashboardSidebar({
             </NavLink>
           </li>
         </ul>
-        <button className="flex">
+        <button className="flex" onClick={openLogoutModal}>
           <RiLogoutCircleRLine />
           <span>Logout</span>
         </button>
       </nav>
+      {logoutModal}
     </StyledDashboardSidebar>
   );
 }

@@ -39,3 +39,11 @@ export const addProjectSchema = yup.object({
     .required("At least one image is required")
     .min(1, "At least one image is required"),
 });
+
+export const loginSchema = yup.object({
+  email: yup
+    .string()
+    .email("Enter a valid email address")
+    .required("Enter your email address"),
+  password: yup.string().required("Enter your password"),
+});
