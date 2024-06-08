@@ -10,6 +10,7 @@ import { LiaAngleLeftSolid } from "react-icons/lia";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../components/ui/Button";
 import { LuUploadCloud } from "react-icons/lu";
+import { useAddProject } from "../../../hooks/useAddProject";
 
 const projectOptions = [
   "Project category",
@@ -32,6 +33,7 @@ export default function DashboardAddProjects() {
     control,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<AddProjectInputs>({
     resolver: yupResolver(addProjectSchema),
     defaultValues: {
@@ -44,8 +46,13 @@ export default function DashboardAddProjects() {
     },
   });
 
-  const onSubmit = (data: AddProjectInputs) => {
-    console.log(data);
+  const { addProject, uploading } = useAddProject();
+
+  const onSubmit = async (data: AddProjectInputs) => {
+    const success = await addProject(data);
+    if (success) {
+      reset();
+    }
   };
 
   return (
@@ -103,7 +110,9 @@ export default function DashboardAddProjects() {
               />
             )}
           />
-          <Button variant="inverted">Upload project</Button>
+          <Button variant="inverted" disabled={uploading}>
+            Upload project
+          </Button>
         </form>
       </StyledDashboardAddProjects>
     </section>

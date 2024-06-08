@@ -42,3 +42,18 @@ export type Admin = {
 };
 
 export type LoginInputs = InferType<typeof loginSchema>;
+
+export type ProjectCategory =
+  | "UI/UX"
+  | "Brand Identity Design"
+  | "Logo Design"
+  | "Flyer Designs";
+
+export type Project = {
+  category: ProjectCategory;
+  name: string;
+  client: string;
+  duration: string;
+  link: string;
+  imageIds: string[];
+};

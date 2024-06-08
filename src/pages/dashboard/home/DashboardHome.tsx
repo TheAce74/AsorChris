@@ -22,7 +22,7 @@ export default function DashboardHome() {
               <PiPackageFill />
             </span>
             <div>
-              <h4>34</h4>
+              <h4>{"0".padStart(2, "0")}</h4>
               <p>Projects published</p>
             </div>
           </div>
@@ -31,7 +31,7 @@ export default function DashboardHome() {
               <PiPackageFill />
             </span>
             <div>
-              <h4>06</h4>
+              <h4>{"0".padStart(2, "0")}</h4>
               <p>UI/UX projects</p>
             </div>
           </div>
@@ -40,7 +40,7 @@ export default function DashboardHome() {
               <PiPackageFill />
             </span>
             <div>
-              <h4>19</h4>
+              <h4>{"0".padStart(2, "0")}</h4>
               <p>Flyer designs</p>
             </div>
           </div>
@@ -49,7 +49,7 @@ export default function DashboardHome() {
               <PiPackageFill />
             </span>
             <div>
-              <h4>06</h4>
+              <h4>{"0".padStart(2, "0")}</h4>
               <p>Logo designs</p>
             </div>
           </div>
@@ -58,7 +58,7 @@ export default function DashboardHome() {
               <PiPackageFill />
             </span>
             <div>
-              <h4>03</h4>
+              <h4>{"0".padStart(2, "0")}</h4>
               <p>BID designs</p>
             </div>
           </div>

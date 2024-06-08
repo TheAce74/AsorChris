@@ -12,6 +12,7 @@ export const contactSchema = yup.object({
 export const addProjectSchema = yup.object({
   category: yup
     .string()
+    .required()
     .test(
       "category",
       "Select a category",
@@ -29,7 +30,7 @@ export const addProjectSchema = yup.object({
         .required("Image is required")
         .test("fileSize", "File size is too large", (value) => {
           if (!value) return false;
-          return value.size <= 5 * 1024 * 1024;
+          return value.size <= 50 * 1024 * 1024;
         })
         .test("fileType", "Unsupported File Format", (value) => {
           if (!value) return false;
