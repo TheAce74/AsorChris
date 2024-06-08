@@ -35,35 +35,56 @@ function useAddProject() {
     }
 
     try {
-      await databases.createDocument(
-        import.meta.env.VITE_APP_WRITE_DATABASE_ID,
-        import.meta.env.VITE_APP_WRITE_COLLECTION_ID,
-        admin.id,
-        {
-          projects: JSON.stringify([
-            ...projects,
-            {
-              name: data.name,
-              category: data.category as ProjectCategory,
-              client: data.client,
-              duration: data.duration,
-              link: data.link,
-              imageIds: imageArr,
-            },
-          ]),
-        }
-      );
-      setProjects([
-        ...projects,
-        {
-          name: data.name,
-          category: data.category as ProjectCategory,
-          client: data.client,
-          duration: data.duration,
-          link: data.link,
-          imageIds: imageArr,
-        },
-      ]);
+      if (projects.length === 0) {
+        await databases.createDocument(
+          import.meta.env.VITE_APP_WRITE_DATABASE_ID,
+          import.meta.env.VITE_APP_WRITE_COLLECTION_ID,
+          admin.id,
+          {
+            projects: JSON.stringify([
+              ...projects,
+              {
+                name: data.name,
+                category: data.category as ProjectCategory,
+                client: data.client,
+                duration: data.duration,
+                link: data.link,
+                imageIds: imageArr,
+              },
+            ]),
+          }
+        );
+        setProjects([
+          ...projects,
+          {
+            name: data.name,
+            category: data.category as ProjectCategory,
+            client: data.client,
+            duration: data.duration,
+            link: data.link,
+            imageIds: imageArr,
+          },
+        ]);
+      } else {
+        await databases.updateDocument(
+          import.meta.env.VITE_APP_WRITE_DATABASE_ID,
+          import.meta.env.VITE_APP_WRITE_COLLECTION_ID,
+          admin.id,
+          {
+            projects: JSON.stringify([
+              ...projects,
+              {
+                name: data.name,
+                category: data.category as ProjectCategory,
+                client: data.client,
+                duration: data.duration,
+                link: data.link,
+                imageIds: imageArr,
+              },
+            ]),
+          }
+        );
+      }
       customToast("Upload successful");
       setUploading(false);
       return true;
