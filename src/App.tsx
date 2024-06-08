@@ -21,6 +21,7 @@ import DashboardMessages from "./pages/dashboard/messages/DashboardMessages";
 import Guard from "./pages/dashboard/components/layout/Guard";
 import DashboardWrapper from "./pages/dashboard/components/layout/DashboardWrapper";
 import DashboardAddProjects from "./pages/dashboard/projects/DashboardAddProjects";
+import DashboardViewMessages from "./pages/dashboard/messages/DashboardViewMessages";
 
 function App() {
   const router = createBrowserRouter([
@@ -99,6 +100,10 @@ function App() {
             {
               path: "/admin/messages",
               element: <DashboardMessages />,
+            },
+            {
+              path: "/admin/messages/view",
+              element: <DashboardViewMessages />,
             },
           ],
         },

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { IoEllipsisHorizontalOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
+import { Menu } from "@mantine/core";
 
 export default function MessageBox() {
   return (
@@ -16,9 +18,20 @@ export default function MessageBox() {
         </p>
         <p>19 minutes ago</p>
       </div>
-      <button>
-        <IoEllipsisHorizontalOutline />
-      </button>
+      <Menu shadow="md" width={200}>
+        <Menu.Target>
+          <button>
+            <IoEllipsisHorizontalOutline />
+          </button>
+        </Menu.Target>
+        <Menu.Dropdown>
+          <Menu.Label>Actions</Menu.Label>
+          <Link to="/admin/messages/view" className="link">
+            <Menu.Item>View</Menu.Item>
+          </Link>
+          <Menu.Item>Delete</Menu.Item>
+        </Menu.Dropdown>
+      </Menu>
     </StyledMessageBox>
   );
 }
@@ -30,6 +43,7 @@ const StyledMessageBox = styled.div`
   border: 1px solid var(--clr-neutral-400);
   border-radius: 0.5em;
   align-items: start;
+  margin-bottom: 1.5em;
 
   .flex {
     align-items: start;

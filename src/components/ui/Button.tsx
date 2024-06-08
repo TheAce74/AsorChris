@@ -10,6 +10,7 @@ const Button = styled.button<{
   display: flex;
   gap: 0.6em;
   align-items: center;
+  justify-content: center;
   background-color: var(--bg);
   color: var(--text);
   border: 2px solid var(--border);
