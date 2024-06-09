@@ -50,3 +50,11 @@ export type Project = {
   link: string;
   imageIds: string[];
 };
+
+export type Message = {
+  id: string;
+  senderName: string;
+  senderEmail: string;
+  message: string;
+  createdAt: string;
+};

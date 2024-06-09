@@ -2,11 +2,18 @@ import { useLayoutEffect } from "react";
 import { useHeading } from "../components/layout/DashboardWrapper";
 import styled from "styled-components";
 import { LiaAngleLeftSolid } from "react-icons/lia";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAtomValue } from "jotai";
+import { messagesAtom } from "../../../services/jotai/messages";
+import { format, formatDistance } from "date-fns";
 
 export default function DashboardViewMessages() {
   const { setHeading } = useHeading();
   const navigate = useNavigate();
+
+  const { id } = useParams();
+  const messages = useAtomValue(messagesAtom);
+  const message = messages.filter((message) => message.id === id)[0];
 
   useLayoutEffect(() => {
     setHeading("Messages");
@@ -19,21 +26,19 @@ export default function DashboardViewMessages() {
           <LiaAngleLeftSolid />
         </button>
         <div className="flex message-flex">
-          <h3>Udonsi Chisom</h3>
-          <p>11:01am</p>
+          <h3>{message.senderName}</h3>
+          <p>{format(new Date(message.createdAt), "p")}</p>
         </div>
         <div className="flex message-flex">
-          <p>19 minutes ago</p>
+          <p>
+            {formatDistance(new Date(message.createdAt), new Date(), {
+              addSuffix: true,
+            })}
+          </p>
           <span></span>
-          <b>udonsichisom@gmail.com</b>
+          <b>{message.senderEmail}</b>
         </div>
-        <p className="message">
-          Hello Christopher, I went through your portfolio and I so much loved
-          your works. I am looking to launch a new brand and would want you to
-          handle the branding as well as the UI/UX design for the website and
-          the mobile app. Please reach out to me via email or WhatsApp with this
-          number so we can continue the conversation +2347063736223
-        </p>
+        <p className="message">{message.message}</p>
       </StyledDashboardViewMessages>
     </section>
   );

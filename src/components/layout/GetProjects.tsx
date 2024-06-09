@@ -23,6 +23,7 @@ export default function GetProjects() {
       <LoadingOverlay
         visible
         zIndex={1000}
+        bg="white"
         overlayProps={{ radius: "sm", blur: 2 }}
       />
     );

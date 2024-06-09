@@ -2,9 +2,12 @@ import { useLayoutEffect } from "react";
 import { useHeading } from "../components/layout/DashboardWrapper";
 import styled from "styled-components";
 import MessageBox from "../components/ui/MessageBox";
+import { messagesAtom } from "../../../services/jotai/messages";
+import { useAtomValue } from "jotai";
 
 export default function DashboardMessages() {
   const { setHeading } = useHeading();
+  const messages = useAtomValue(messagesAtom);
 
   useLayoutEffect(() => {
     setHeading("Messages");
@@ -13,15 +16,13 @@ export default function DashboardMessages() {
   return (
     <section>
       <StyledDashboardMessages>
-        <h3 className="info-heading">New</h3>
-        <MessageBox />
-        <MessageBox />
-        <h3 className="info-heading">Last 7 days</h3>
-        <MessageBox />
-        <MessageBox />
-        <h3 className="info-heading">Earlier</h3>
-        <MessageBox />
-        <MessageBox />
+        <h2 className="info-heading">All messages</h2>
+        {messages.map((message) => (
+          <MessageBox key={message.id} message={message} />
+        ))}
+        {messages.length === 0 && (
+          <p className="no-info">No messages received yet</p>
+        )}
       </StyledDashboardMessages>
     </section>
   );
@@ -29,6 +30,11 @@ export default function DashboardMessages() {
 
 const StyledDashboardMessages = styled.div`
   .info-heading {
-    margin-block: 1.5em 1em;
+    margin-bottom: 1em;
+  }
+
+  .no-info {
+    padding-block: 6em;
+    text-align: center;
   }
 `;

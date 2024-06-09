@@ -11,6 +11,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { contactSchema } from "../../utils/schema";
 import { ContactInputs } from "../../utils/types";
 import { maxMedia } from "../../utils/mediaQueries";
+import { useSendMessage } from "../../hooks/useSendMessage";
 
 export default function ContactSection() {
   const {
@@ -27,9 +28,13 @@ export default function ContactSection() {
     },
   });
 
-  const onSubmit: SubmitHandler<ContactInputs> = (data) => {
-    console.log(data);
-    reset();
+  const { sendMessage, sending } = useSendMessage();
+
+  const onSubmit: SubmitHandler<ContactInputs> = async (data) => {
+    const response = await sendMessage(data);
+    if (response) {
+      reset();
+    }
   };
 
   return (
@@ -71,7 +76,7 @@ export default function ContactSection() {
             />
             {errors.message && <p role="alert">{errors.message.message}</p>}
           </div>
-          <Button variant="inverted">
+          <Button variant="inverted" disabled={sending}>
             <span>Send message</span>
             <FaAngleRight />
           </Button>

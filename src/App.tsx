@@ -103,7 +103,7 @@ function App() {
               element: <DashboardMessages />,
             },
             {
-              path: "/admin/messages/view",
+              path: "/admin/messages/:id",
               element: <DashboardViewMessages />,
             },
           ],

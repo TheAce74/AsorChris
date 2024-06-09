@@ -16,6 +16,7 @@
     "@splidejs/react-splide": "^0.7.12",
     "@splidejs/splide": "^4.1.4",
     "appwrite": "^15.0.0",
+    "date-fns": "^3.6.0",
     "hamburger-react": "^2.5.0",
     "jotai": "^2.8.3",
     "react": "^18.2.0",

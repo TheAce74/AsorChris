@@ -6,6 +6,7 @@ import { useAtom } from "jotai";
 import { adminAtom } from "../../../../services/jotai/admin";
 import { LoadingOverlay } from "@mantine/core";
 import { useGetProjects } from "../../../../hooks/useGetProjects";
+import { useGetMessages } from "../../../../hooks/useGetMessages";
 
 type GuardProps = {
   children: ReactNode;
@@ -16,6 +17,7 @@ export default function Guard({ children }: GuardProps) {
   const { customToast } = useToast();
   const [admin, setAdmin] = useAtom(adminAtom);
   const { getProjects } = useGetProjects();
+  const { getMessages } = useGetMessages();
 
   useEffect(() => {
     const getAdmin = async () => {
@@ -27,13 +29,14 @@ export default function Guard({ children }: GuardProps) {
           id: res.$id,
         });
         await getProjects(res.$id);
+        await getMessages();
       } catch (error) {
         customToast(error as string, { type: "error" });
         navigate("/login", { replace: true });
       }
     };
     getAdmin();
-  }, [navigate, customToast, setAdmin, getProjects]);
+  }, [navigate, customToast, setAdmin, getProjects, getMessages]);
 
   if (admin.name) {
     return <>{children}</>;

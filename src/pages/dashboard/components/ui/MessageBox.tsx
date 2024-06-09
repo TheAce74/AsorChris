@@ -2,21 +2,32 @@ import styled from "styled-components";
 import { IoEllipsisHorizontalOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { Menu } from "@mantine/core";
+import { Message } from "../../../../utils/types";
+import { format, formatDistance } from "date-fns";
+import { useDeleteMessage } from "../../../../hooks/useDeleteMessage";
 
-export default function MessageBox() {
+type MessageBoxProps = {
+  message: Message;
+};
+
+export default function MessageBox({ message }: MessageBoxProps) {
+  const { deleteMessage } = useDeleteMessage();
+
   return (
     <StyledMessageBox className="flex">
       <div>
         <p className="flex">
           <div>
-            <h4>Udonsi Chisom</h4>
-            <span>
-              Hello Christopher, I went through your portfolio and loved...
-            </span>
+            <h4>{message.senderName}</h4>
+            <span>{message.message.slice(0, 60)}...</span>
           </div>
-          <span>11:01am</span>
+          <span>{format(new Date(message.createdAt), "p")}</span>
         </p>
-        <p>19 minutes ago</p>
+        <p>
+          {formatDistance(new Date(message.createdAt), new Date(), {
+            addSuffix: true,
+          })}
+        </p>
       </div>
       <Menu shadow="md" width={200}>
         <Menu.Target>
@@ -26,10 +37,12 @@ export default function MessageBox() {
         </Menu.Target>
         <Menu.Dropdown>
           <Menu.Label>Actions</Menu.Label>
-          <Link to="/admin/messages/view" className="link">
+          <Link to={`/admin/messages/${message.id}`} className="link">
             <Menu.Item>View</Menu.Item>
           </Link>
-          <Menu.Item>Delete</Menu.Item>
+          <Menu.Item onClick={() => deleteMessage(message.id)}>
+            Delete
+          </Menu.Item>
         </Menu.Dropdown>
       </Menu>
     </StyledMessageBox>
