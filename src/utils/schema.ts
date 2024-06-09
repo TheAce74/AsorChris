@@ -19,6 +19,7 @@ export const addProjectSchema = yup.object({
       (value) => value !== "Project category"
     ),
   name: yup.string().required("Enter the name of the project"),
+  description: yup.string().required("Enter the description of the project"),
   client: yup.string().required("Enter client's name"),
   duration: yup.string().required("Enter project duration"),
   link: yup.string().required("Enter link to live project"),

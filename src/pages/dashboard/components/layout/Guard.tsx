@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useToast } from "../../../../hooks/useToast";
 import { account } from "../../../../services/appwrite/appwrite";
 import { useAtom } from "jotai";
-import { adminState } from "../../../../services/jotai/admin";
+import { adminAtom } from "../../../../services/jotai/admin";
 import { LoadingOverlay } from "@mantine/core";
 import { useGetProjects } from "../../../../hooks/useGetProjects";
 
@@ -14,7 +14,7 @@ type GuardProps = {
 export default function Guard({ children }: GuardProps) {
   const navigate = useNavigate();
   const { customToast } = useToast();
-  const [admin, setAdmin] = useAtom(adminState);
+  const [admin, setAdmin] = useAtom(adminAtom);
   const { getProjects } = useGetProjects();
 
   useEffect(() => {

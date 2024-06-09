@@ -1,13 +1,13 @@
 import { useSetAtom } from "jotai";
 import { databases } from "../services/appwrite/appwrite";
-import { projectsState } from "../services/jotai/projects";
+import { projectsAtom } from "../services/jotai/projects";
 import { Project } from "../utils/types";
 import { useToast } from "./useToast";
 import { useCallback } from "react";
 
 function useGetProjects() {
   const { customToast } = useToast();
-  const setProjects = useSetAtom(projectsState);
+  const setProjects = useSetAtom(projectsAtom);
 
   const getProjects = useCallback(
     async (id: string) => {

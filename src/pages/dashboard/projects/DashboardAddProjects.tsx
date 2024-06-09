@@ -3,7 +3,7 @@ import { useHeading } from "../components/layout/DashboardWrapper";
 import { useLayoutEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { FileInput, NativeSelect, TextInput } from "@mantine/core";
+import { FileInput, NativeSelect, TextInput, Textarea } from "@mantine/core";
 import { AddProjectInputs } from "../../../utils/types";
 import { addProjectSchema } from "../../../utils/schema";
 import { LiaAngleLeftSolid } from "react-icons/lia";
@@ -39,6 +39,7 @@ export default function DashboardAddProjects() {
     defaultValues: {
       category: "Project category",
       name: "",
+      description: "",
       client: "",
       duration: "",
       link: "",
@@ -74,6 +75,12 @@ export default function DashboardAddProjects() {
             {...register("name")}
             placeholder="Project name"
             error={errors.name?.message}
+            size="md"
+          />
+          <Textarea
+            {...register("description")}
+            placeholder="Project description"
+            error={errors.description?.message}
             size="md"
           />
           <TextInput

@@ -52,6 +52,7 @@ export type ProjectCategory =
 export type Project = {
   category: ProjectCategory;
   name: string;
+  description: string;
   client: string;
   duration: string;
   link: string;

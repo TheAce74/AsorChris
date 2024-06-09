@@ -5,9 +5,13 @@ import styled from "styled-components";
 import MessageBox from "../components/ui/MessageBox";
 import { v4 as uuidv4 } from "uuid";
 import project from "../../../assets/featuredProjectsImage2.png";
+import { useAtomValue } from "jotai";
+import { projectsAtom } from "../../../services/jotai/projects";
+import { getCount } from "../../../utils/functions";
 
 export default function DashboardHome() {
   const { setHeading } = useHeading();
+  const projects = useAtomValue(projectsAtom);
 
   useLayoutEffect(() => {
     setHeading("Dashboard");
@@ -22,7 +26,7 @@ export default function DashboardHome() {
               <PiPackageFill />
             </span>
             <div>
-              <h4>{"0".padStart(2, "0")}</h4>
+              <h4>{projects.length.toString().padStart(2, "0")}</h4>
               <p>Projects published</p>
             </div>
           </div>
@@ -31,7 +35,7 @@ export default function DashboardHome() {
               <PiPackageFill />
             </span>
             <div>
-              <h4>{"0".padStart(2, "0")}</h4>
+              <h4>{getCount(projects, "UI/UX").padStart(2, "0")}</h4>
               <p>UI/UX projects</p>
             </div>
           </div>
@@ -40,7 +44,7 @@ export default function DashboardHome() {
               <PiPackageFill />
             </span>
             <div>
-              <h4>{"0".padStart(2, "0")}</h4>
+              <h4>{getCount(projects, "Flyer Designs").padStart(2, "0")}</h4>
               <p>Flyer designs</p>
             </div>
           </div>
@@ -49,7 +53,7 @@ export default function DashboardHome() {
               <PiPackageFill />
             </span>
             <div>
-              <h4>{"0".padStart(2, "0")}</h4>
+              <h4>{getCount(projects, "Logo Design").padStart(2, "0")}</h4>
               <p>Logo designs</p>
             </div>
           </div>
@@ -58,7 +62,9 @@ export default function DashboardHome() {
               <PiPackageFill />
             </span>
             <div>
-              <h4>{"0".padStart(2, "0")}</h4>
+              <h4>
+                {getCount(projects, "Brand Identity Design").padStart(2, "0")}
+              </h4>
               <p>BID designs</p>
             </div>
           </div>

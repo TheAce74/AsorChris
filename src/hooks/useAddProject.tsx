@@ -2,14 +2,14 @@ import { ID } from "appwrite";
 import { databases, storage } from "../services/appwrite/appwrite";
 import { AddProjectInputs, ProjectCategory } from "../utils/types";
 import { useToast } from "./useToast";
-import { adminState } from "../services/jotai/admin";
+import { adminAtom } from "../services/jotai/admin";
 import { useAtom, useAtomValue } from "jotai";
-import { projectsState } from "../services/jotai/projects";
+import { projectsAtom } from "../services/jotai/projects";
 import { useState } from "react";
 
 function useAddProject() {
-  const admin = useAtomValue(adminState);
-  const [projects, setProjects] = useAtom(projectsState);
+  const admin = useAtomValue(adminAtom);
+  const [projects, setProjects] = useAtom(projectsAtom);
   const [uploading, setUploading] = useState(false);
 
   const { customToast } = useToast();
@@ -46,6 +46,7 @@ function useAddProject() {
               {
                 name: data.name,
                 category: data.category as ProjectCategory,
+                description: data.description,
                 client: data.client,
                 duration: data.duration,
                 link: data.link,
@@ -54,17 +55,6 @@ function useAddProject() {
             ]),
           }
         );
-        setProjects([
-          ...projects,
-          {
-            name: data.name,
-            category: data.category as ProjectCategory,
-            client: data.client,
-            duration: data.duration,
-            link: data.link,
-            imageIds: imageArr,
-          },
-        ]);
       } else {
         await databases.updateDocument(
           import.meta.env.VITE_APP_WRITE_DATABASE_ID,
@@ -76,6 +66,7 @@ function useAddProject() {
               {
                 name: data.name,
                 category: data.category as ProjectCategory,
+                description: data.description,
                 client: data.client,
                 duration: data.duration,
                 link: data.link,
@@ -85,6 +76,18 @@ function useAddProject() {
           }
         );
       }
+      setProjects([
+        ...projects,
+        {
+          name: data.name,
+          category: data.category as ProjectCategory,
+          description: data.description,
+          client: data.client,
+          duration: data.duration,
+          link: data.link,
+          imageIds: imageArr,
+        },
+      ]);
       customToast("Upload successful");
       setUploading(false);
       return true;
