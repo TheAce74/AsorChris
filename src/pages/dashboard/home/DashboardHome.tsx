@@ -6,11 +6,19 @@ import MessageBox from "../components/ui/MessageBox";
 import { v4 as uuidv4 } from "uuid";
 import { useAtomValue } from "jotai";
 import { projectsAtom } from "../../../services/jotai/projects";
-import { getCount } from "../../../utils/functions";
+import { getCount, getKeys, groupProjects } from "../../../utils/functions";
+import { messagesAtom } from "../../../services/jotai/messages";
+import ProjectWithoutContent from "../../../components/ui/ProjectWithoutContent";
+import ProjectWithContent from "../../../components/ui/ProjectWithContent";
+import { minMedia } from "../../../utils/mediaQueries";
 
 export default function DashboardHome() {
   const { setHeading } = useHeading();
   const projects = useAtomValue(projectsAtom);
+  const messages = useAtomValue(messagesAtom);
+
+  const grouped = groupProjects(projects);
+  const projectsKeys = getKeys(grouped);
 
   useLayoutEffect(() => {
     setHeading("Dashboard");
@@ -69,20 +77,56 @@ export default function DashboardHome() {
           </div>
         </div>
         <h2>Recent Activities</h2>
-        {[].length === 0 ? (
+        {messages.length === 0 && projects.length === 0 ? (
           <p className="no-info">No activity to display</p>
         ) : (
           <div>
-            <h3 className="info-heading">New message</h3>
-            <MessageBox />
-            <h3 className="info-heading">Uploaded new projects</h3>
-            <ul role="list" className="grid-flexible">
-              {[1, 2, 3, 4].map(() => (
-                <li key={uuidv4()}>
-                  {/* <img src={project} className="stand-alone" alt="" /> */}
-                </li>
-              ))}
-            </ul>
+            {messages.slice(0, 6).map((message) => (
+              <>
+                <h3 className="info-heading">New messages</h3>
+                <MessageBox key={message.id} message={message} />
+              </>
+            ))}
+            {projects.length !== 0 && (
+              <>
+                <h3 className="info-heading">Uploaded new projects</h3>
+                {projectsKeys.map((key) => (
+                  <>
+                    {grouped[key].length > 0 && <h3 className="mb-2">{key}</h3>}
+                    <ul
+                      role="list"
+                      aria-label={`${key} projects`}
+                      className={`${
+                        key !== "Brand Identity Design" && key !== "UI/UX"
+                          ? "grid-flexible-content"
+                          : "three-cols"
+                      } grid-flexible`}
+                    >
+                      {grouped[key]
+                        .reverse()
+                        .slice(0, 6)
+                        .map((project, idx) =>
+                          key !== "Brand Identity Design" && key !== "UI/UX" ? (
+                            <ProjectWithoutContent
+                              key={uuidv4()}
+                              idx={idx}
+                              project={project}
+                            />
+                          ) : (
+                            <li key={uuidv4()}>
+                              <ProjectWithContent
+                                label={`${project.category} project ${idx + 1}`}
+                                idx={idx}
+                                project={project}
+                              />
+                            </li>
+                          )
+                        )}
+                    </ul>
+                  </>
+                ))}
+              </>
+            )}
           </div>
         )}
       </StyledDashboardHome>
@@ -145,4 +189,21 @@ const StyledDashboardHome = styled.div`
   .info-heading {
     margin-block: 1.5em 1em;
   }
+
+  .mb-2 {
+    margin-bottom: 0.5em;
+  }
+
+  ${minMedia(
+    "lg",
+    `
+     .three-cols {
+      grid-template-columns: repeat(3, 1fr)
+     }
+
+     .grid-flexible-content {
+      grid-template-columns: repeat(4, 1fr)
+     }
+    `
+  )}
 `;

@@ -15,6 +15,7 @@ function useAddProject() {
   const { customToast } = useToast();
 
   const addProject = async (data: AddProjectInputs): Promise<boolean> => {
+    customToast("Uploading...", { type: "info" });
     setUploading(true);
     const imageArr = [];
     for (let i = 0; i < data.images.length; i++) {
