@@ -4,7 +4,6 @@ import { PiPackageFill } from "react-icons/pi";
 import styled from "styled-components";
 import MessageBox from "../components/ui/MessageBox";
 import { v4 as uuidv4 } from "uuid";
-import project from "../../../assets/featuredProjectsImage2.png";
 import { useAtomValue } from "jotai";
 import { projectsAtom } from "../../../services/jotai/projects";
 import { getCount } from "../../../utils/functions";
@@ -70,7 +69,7 @@ export default function DashboardHome() {
           </div>
         </div>
         <h2>Recent Activities</h2>
-        {[1].length === 0 ? (
+        {[].length === 0 ? (
           <p className="no-info">No activity to display</p>
         ) : (
           <div>
@@ -80,7 +79,7 @@ export default function DashboardHome() {
             <ul role="list" className="grid-flexible">
               {[1, 2, 3, 4].map(() => (
                 <li key={uuidv4()}>
-                  <img src={project} className="stand-alone" alt="" />
+                  {/* <img src={project} className="stand-alone" alt="" /> */}
                 </li>
               ))}
             </ul>

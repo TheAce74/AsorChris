@@ -145,7 +145,8 @@ const StyledDashboardAddProjects = styled.div`
   }
 
   input,
-  select {
+  select,
+  textarea {
     margin-top: 1.5em;
   }
 

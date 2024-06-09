@@ -22,6 +22,7 @@ import Guard from "./pages/dashboard/components/layout/Guard";
 import DashboardWrapper from "./pages/dashboard/components/layout/DashboardWrapper";
 import DashboardAddProjects from "./pages/dashboard/projects/DashboardAddProjects";
 import DashboardViewMessages from "./pages/dashboard/messages/DashboardViewMessages";
+import GetProjects from "./components/layout/GetProjects";
 
 function App() {
   const router = createBrowserRouter([
@@ -42,7 +43,7 @@ function App() {
           element: (
             <>
               <Header />
-              <Outlet />
+              <GetProjects />
               <Footer />
             </>
           ),
@@ -56,7 +57,7 @@ function App() {
               element: <Projects />,
             },
             {
-              path: "/projects/:slug",
+              path: "/projects/:name",
               element: <Project />,
             },
             {

@@ -11,7 +11,7 @@ export const services: ServiceType[] = [
     title: "UI/UX Design",
     text: "Immerse in the seamless blend of aesthetics and usability with my UI/UX design services. I focus on creating intuitive interfaces and engaging user experiences, ensuring your digital products are not just visually appealing but also user-friendly and accessible. Let me make your users' journey unforgettable",
     linkText: "See UI/UX Designs",
-    linkPath: "/projects?filter=ui",
+    linkPath: "/projects?filter=UI/UX",
   },
   {
     id: "services-flyer",
@@ -19,7 +19,7 @@ export const services: ServiceType[] = [
     title: "Flyer Design",
     text: "Capture attention at first glance with my custom flyer design services. From event announcements to promotional flyers, I craft eye-catching designs that communicate your message effectively and resonate with your target audience. Elevate your marketing with flyers that stand out.",
     linkText: "See Flyer Designs",
-    linkPath: "/projects?filter=flyer",
+    linkPath: "/projects?filter=Flyer Designs",
   },
   {
     id: "services-logo",
@@ -27,7 +27,7 @@ export const services: ServiceType[] = [
     title: "Logo Design",
     text: "Your brand's first impression starts with a logo. My logo design service is dedicated to creating distinctive, memorable logos that encapsulate the essence of your brand. A great logo is the cornerstone of your brand identity. Let me build yours to be as impactful as possible.",
     linkText: "See Logo Designs",
-    linkPath: "/projects?filter=logo",
+    linkPath: "/projects?filter=Logo Design",
   },
   {
     id: "services-brand",
@@ -35,7 +35,7 @@ export const services: ServiceType[] = [
     title: "Brand Identity Design",
     text: "Build a cohesive, powerful brand identity with my comprehensive design services. From logos to color schemes and typography, I create a visual language that communicates your brand's values and vision. Elevate your presence and connect with your audience on a deeper level.",
     linkText: "See Brand Identity Designs",
-    linkPath: "/projects?filter=brand",
+    linkPath: "/projects?filter=Brand Identity Design",
   },
   {
     id: "services-content",

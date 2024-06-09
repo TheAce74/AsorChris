@@ -19,3 +19,26 @@ export const getCount = (
     }, 0)
     .toString();
 };
+
+export const groupProjects = (
+  projects: Project[]
+): Record<ProjectCategory, Project[]> => {
+  return projects.reduce(
+    (acc, project) =>
+      Object.assign(acc, {
+        [project.category]: [...acc[project.category], project],
+      }),
+    {
+      "UI/UX": [],
+      "Brand Identity Design": [],
+      "Logo Design": [],
+      "Flyer Designs": [],
+    }
+  );
+};
+
+export const getKeys = (
+  obj: Record<ProjectCategory, Project[]>
+): ProjectCategory[] => {
+  return Object.keys(obj) as ProjectCategory[];
+};

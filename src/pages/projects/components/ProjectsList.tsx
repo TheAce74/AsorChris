@@ -1,22 +1,31 @@
 import styled from "styled-components";
 import { Select } from "@mantine/core";
 import { maxMedia } from "../../../utils/mediaQueries";
-import { allProjects } from "../../../data/allProjects";
 import SubSection from "../../../components/ui/SubSection";
 import { v4 as uuidv4 } from "uuid";
 import { useSearchParams } from "react-router-dom";
+import { useAtomValue } from "jotai";
+import { projectsAtom } from "../../../services/jotai/projects";
+import { getKeys, groupProjects } from "../../../utils/functions";
+import { ProjectCategory } from "../../../utils/types";
 
 const options = [
   { value: "all", label: "All" },
-  { value: "brand", label: "Brand Identity Design" },
-  { value: "flyer", label: "Flyer Designs" },
-  { value: "logo", label: "Logo Design" },
-  { value: "ui", label: "UI/UX" },
+  { value: "Brand Identity Design", label: "Brand Identity Design" },
+  { value: "Flyer Designs", label: "Flyer Designs" },
+  { value: "Logo Design", label: "Logo Design" },
+  { value: "UI/UX", label: "UI/UX" },
 ];
 
 export default function ProjectsList() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const computedValue = searchParams.get("filter") ?? "all";
+  const computedValue: "all" | ProjectCategory =
+    (searchParams.get("filter") as ProjectCategory | null) ?? "all";
+
+  const projects = useAtomValue(projectsAtom);
+
+  const grouped = groupProjects(projects);
+  const projectsKeys = getKeys(grouped);
 
   return (
     <StyledProjectsList>
@@ -34,23 +43,23 @@ export default function ProjectsList() {
           aria-label="category dropdown"
         />
       </div>
-      {allProjects
-        .filter((project) => {
+      {projectsKeys
+        .filter((key) => {
           if (computedValue === "all") {
-            return project;
+            return grouped[key];
           } else {
             const selectedFilter = options.filter(
               (option) => option.value === computedValue
             )[0];
-            return project.type === selectedFilter.label;
+            return key === selectedFilter.label;
           }
         })
-        .map(({ type, data }) => (
+        .map((key) => (
           <SubSection
             key={uuidv4()}
             headingText1="Projects"
-            headingText2={type}
-            data={data}
+            headingText2={key}
+            projects={grouped[key]}
           />
         ))}
     </StyledProjectsList>

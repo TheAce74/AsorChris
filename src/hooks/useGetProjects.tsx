@@ -21,7 +21,9 @@ function useGetProjects() {
         setProjects(projects);
       } catch (error) {
         console.error(error);
-        customToast("Failed to fetch projects", { type: "error" });
+        customToast("Failed to fetch projects, please refresh", {
+          type: "error",
+        });
       }
     },
     [customToast, setProjects]

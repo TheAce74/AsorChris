@@ -2,7 +2,6 @@ import { useLayoutEffect } from "react";
 import { useHeading } from "../components/layout/DashboardWrapper";
 import styled from "styled-components";
 import { PiPackageFill } from "react-icons/pi";
-import { allProjects } from "../../../data/allProjects";
 import ProjectWithContent from "../../../components/ui/ProjectWithContent";
 import { v4 as uuidv4 } from "uuid";
 import Button from "../../../components/ui/Button";
@@ -10,11 +9,16 @@ import { FaPlus } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useAtomValue } from "jotai";
 import { projectsAtom } from "../../../services/jotai/projects";
-import { getCount } from "../../../utils/functions";
+import { getCount, getKeys, groupProjects } from "../../../utils/functions";
+import ProjectWithoutContent from "../../../components/ui/ProjectWithoutContent";
+import { minMedia } from "../../../utils/mediaQueries";
 
 export default function DashboardProjects() {
   const { setHeading } = useHeading();
   const projects = useAtomValue(projectsAtom);
+
+  const grouped = groupProjects(projects);
+  const projectsKeys = getKeys(grouped);
 
   useLayoutEffect(() => {
     setHeading("Projects");
@@ -81,33 +85,40 @@ export default function DashboardProjects() {
             </Button>
           </Link>
         </div>
-        {allProjects.map((project, idx) => (
-          <ul
-            role="list"
-            aria-label={`${project.type} projects`}
-            className={`${
-              typeof project.data[0] !== "string" && "grid-flexible-content"
-            } grid-flexible`}
-          >
-            {project.data.map((datum) =>
-              typeof datum === "string" ? (
-                <li key={uuidv4()}>
-                  <img
-                    src={datum}
-                    alt={`${project.type} project ${idx + 1}`}
-                    className="stand-alone"
+        {projects.length === 0 && (
+          <p className="no-info">No project added yet</p>
+        )}
+        {projectsKeys.map((key) => (
+          <>
+            {grouped[key].length > 0 && <h3 className="mb-2">{key}</h3>}
+            <ul
+              role="list"
+              aria-label={`${key} projects`}
+              className={`${
+                key !== "Brand Identity Design" && key !== "UI/UX"
+                  ? "grid-flexible-content"
+                  : "three-cols"
+              } grid-flexible`}
+            >
+              {grouped[key].reverse().map((project, idx) =>
+                key !== "Brand Identity Design" && key !== "UI/UX" ? (
+                  <ProjectWithoutContent
+                    key={uuidv4()}
+                    idx={idx}
+                    project={project}
                   />
-                </li>
-              ) : (
-                <li key={uuidv4()}>
-                  <ProjectWithContent
-                    label={`${project.type} project ${idx + 1}`}
-                    {...datum}
-                  />
-                </li>
-              )
-            )}
-          </ul>
+                ) : (
+                  <li key={uuidv4()}>
+                    <ProjectWithContent
+                      label={`${project.category} project ${idx + 1}`}
+                      idx={idx}
+                      project={project}
+                    />
+                  </li>
+                )
+              )}
+            </ul>
+          </>
         ))}
       </StyledDashboardProjects>
     </section>
@@ -169,6 +180,28 @@ const StyledDashboardProjects = styled.div`
   }
 
   .top {
-    margin-bottom: 2.5em;
+    margin-bottom: 2em;
   }
+
+  .mb-2 {
+    margin-bottom: 1em;
+  }
+
+  .no-info {
+    padding-block: 6em;
+    text-align: center;
+  }
+
+  ${minMedia(
+    "lg",
+    `
+     .three-cols {
+      grid-template-columns: repeat(3, 1fr)
+     }
+
+     .grid-flexible-content {
+      grid-template-columns: repeat(4, 1fr)
+     }
+    `
+  )}
 `;

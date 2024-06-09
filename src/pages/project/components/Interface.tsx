@@ -1,20 +1,24 @@
 import styled from "styled-components";
 import { maxMedia } from "../../../utils/mediaQueries";
-import image from "../../../assets/featuredProjectsImage1.png";
 import { v4 as uuidv4 } from "uuid";
+import ProjectWithoutContent from "../../../components/ui/ProjectWithoutContent";
+import { Project } from "../../../utils/types";
 
-const images = [image, image, image, image, image, image, image, image, image];
+type InterfaceProps = {
+  project: Project;
+};
 
-export default function Interface() {
+export default function Interface({ project }: InterfaceProps) {
   return (
     <StyledInterface>
       <h2>Interface design</h2>
       <div>
-        {images.map((image, idx) => (
-          <img
+        {project.imageIds.map((_, idx) => (
+          <ProjectWithoutContent
+            idx={idx}
+            project={project}
             key={uuidv4()}
-            src={image}
-            alt={`product design image ${idx + 1}`}
+            imageOnly
           />
         ))}
       </div>

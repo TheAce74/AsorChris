@@ -5,8 +5,12 @@ import { HiOutlineDownload } from "react-icons/hi";
 import styled from "styled-components";
 import { maxMedia } from "../../../utils/mediaQueries";
 import resume from "../../../assets/resume.pdf";
+import { useAtomValue } from "jotai";
+import { projectsAtom } from "../../../services/jotai/projects";
 
 export default function Hero() {
+  const projects = useAtomValue(projectsAtom);
+
   return (
     <StyledHero id="hero">
       <h1>Creating sleek interfaces one pixel at a time</h1>
@@ -23,18 +27,14 @@ export default function Hero() {
             <FaAngleRight />
           </Button>
         </Link>
-        <a
-          href={resume}
-          className="link"
-          download="Asor Christopher's Resume"
-        >
+        <a href={resume} className="link" download="Asor Christopher's Resume">
           <Button variant="accent">
             <span>Download Resume</span>
             <HiOutlineDownload />
           </Button>
         </a>
       </div>
-      <p className="last">Over 10 projects worked on!</p>
+      <p className="last">Over {projects.length} projects worked on!</p>
     </StyledHero>
   );
 }

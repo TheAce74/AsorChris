@@ -1,32 +1,49 @@
 import styled from "styled-components";
-import { ProjectWithContentType } from "../../utils/types";
 import { Link } from "react-router-dom";
 import Button from "./Button";
 import { FaAngleRight } from "react-icons/fa6";
+import { Project } from "../../utils/types";
+import { useGetImageUrl } from "../../hooks/useGetImageUrl";
+import { useCallback, useEffect, useState } from "react";
 
-type ProjectWithContentProps = ProjectWithContentType & {
+type ProjectWithContentProps = {
   label: string;
+  project: Project;
+  idx: number;
   className?: string;
 };
 
 export default function ProjectWithContent({
-  image,
-  title,
-  text,
-  linkText,
-  linkPath,
   label,
   className,
+  project,
+  idx,
 }: ProjectWithContentProps) {
+  const { getImgUrl } = useGetImageUrl();
+  const [url, setUrl] = useState("");
+
+  const getUrl = useCallback(async () => {
+    const response = await getImgUrl(project.imageIds[idx]);
+    setUrl(response);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    getUrl();
+  }, [getUrl]);
+
   return (
     <StyledProjectWithContent aria-label={label} className={className}>
-      <img src={image} alt="" />
+      <img src={url} alt="" />
       <div>
-        <h4>{title}</h4>
-        <p>{text}</p>
-        <Link to={linkPath} className="link">
+        <h4>{project.name}</h4>
+        <p>{project.description}</p>
+        <Link
+          to={`/projects/${project.name}?type=${project.category}`}
+          className="link"
+        >
           <Button>
-            <span>{linkText}</span>
+            <span>View project</span>
             <FaAngleRight />
           </Button>
         </Link>
