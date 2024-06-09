@@ -3,7 +3,7 @@ import { useGetProjects } from "../../hooks/useGetProjects";
 import { useEffect } from "react";
 import { useAtomValue } from "jotai";
 import { projectsAtom } from "../../services/jotai/projects";
-import { LoadingOverlay } from "@mantine/core";
+import Loader from "./Loader";
 
 export default function GetProjects() {
   const projects = useAtomValue(projectsAtom);
@@ -19,13 +19,6 @@ export default function GetProjects() {
   if (projects.length > 0) {
     return <Outlet />;
   } else {
-    return (
-      <LoadingOverlay
-        visible
-        zIndex={1000}
-        bg="white"
-        overlayProps={{ radius: "sm", blur: 2 }}
-      />
-    );
+    return <Loader />;
   }
 }

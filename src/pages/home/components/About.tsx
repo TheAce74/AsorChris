@@ -11,14 +11,7 @@ export default function About() {
           Welcome to the intersection of aesthetics and functionality. I'm Asor
           Christopher a UI/UX designer dedicated to transforming user needs into
           intuitive, impactful digital experiences. Explore my journey through
-          design, where every pixel tells a story. Welcome to the intersection
-          of aesthetics and functionality. I'm Asor Christopher a UI/UX designer
-          dedicated to transforming user needs into intuitive, impactful digital
-          experiences. Explore my journey through design, where every pixel
-          tells a story. Welcome to the intersection of aesthetics and
-          functionality. I'm Asor Christopher a UI/UX designer dedicated to
-          transforming user needs into intuitive, impactful digital experiences.
-          Explore my journey through design, where every pixel tells a story.
+          design, where every pixel tells a story.
         </p>
         <img
           src={aboutImage}
@@ -35,7 +28,6 @@ const StyledAbout = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5em;
-  align-items: center;
 
   p {
     line-height: 2;
