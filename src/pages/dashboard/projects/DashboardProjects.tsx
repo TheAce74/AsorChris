@@ -102,13 +102,14 @@ export default function DashboardProjects() {
             >
               {grouped[key]
                 .reverse()
-                .slice(0, 6)
+                // .slice(0, 6)
                 .map((project, idx) =>
                   key !== "Brand Identity Design" && key !== "UI/UX" ? (
                     <ProjectWithoutContent
                       key={uuidv4()}
                       idx={idx}
                       project={project}
+                      inDashboard
                     />
                   ) : (
                     <li key={uuidv4()}>
@@ -116,6 +117,7 @@ export default function DashboardProjects() {
                         label={`${project.category} project ${idx + 1}`}
                         idx={idx}
                         project={project}
+                        inDashboard
                       />
                     </li>
                   )

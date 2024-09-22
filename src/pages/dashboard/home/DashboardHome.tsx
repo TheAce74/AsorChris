@@ -111,6 +111,7 @@ export default function DashboardHome() {
                               key={uuidv4()}
                               idx={idx}
                               project={project}
+                              inDashboard
                             />
                           ) : (
                             <li key={uuidv4()}>
@@ -118,6 +119,7 @@ export default function DashboardHome() {
                                 label={`${project.category} project ${idx + 1}`}
                                 idx={idx}
                                 project={project}
+                                inDashboard
                               />
                             </li>
                           )
